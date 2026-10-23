@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusEvents — College Event Management</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <section class="hero">
+    <div class="hero-shape hero-shape-1"></div>
+    <div class="hero-shape hero-shape-2"></div>
+    <div class="hero-content">
+      <h1>Discover & Join College Events</h1>
+      <p>The ultimate platform to explore, register, and manage campus activities. Never miss out on what's happening around you.</p>
+      <div class="hero-buttons">
+        <a href="register.html" class="btn btn-primary">Get Started</a>
+        <a href="dashboard.html" class="btn btn-secondary">Browse Events</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mt-4">
+    <div class="stats-grid">
+      <div class="glass-card stat-card">
+        <div class="stat-value">50+</div>
+        <div class="stat-label">Events Hosted</div>
+      </div>
+      <div class="glass-card stat-card">
+        <div class="stat-value">1000+</div>
+        <div class="stat-label">Active Students</div>
+      </div>
+      <div class="glass-card stat-card">
+        <div class="stat-value">20+</div>
+        <div class="stat-label">Categories</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4 mb-4">
+    <h2 class="text-center mb-3">Featured Events</h2>
+    <div id="featured-events" class="events-grid">
+      <!-- Loaded dynamically -->
+    </div>
+  </div>
+
+  <div class="container mt-4 mb-4">
+    <h2 class="text-center mb-3">Platform Features</h2>
+    <div class="events-grid">
+      <div class="glass-card text-center">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+        <h3>Easy Registration</h3>
+        <p class="text-secondary">Register for any event with a single click. Keep track of all your participations in one place.</p>
+      </div>
+      <div class="glass-card text-center">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+        <h3>Real-time Updates</h3>
+        <p class="text-secondary">Get instant notifications about event changes, new announcements, and schedule updates.</p>
+      </div>
+      <div class="glass-card text-center">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+        <h3>Admin Dashboard</h3>
+        <p class="text-secondary">Powerful tools for event organizers to manage attendees, capacities, and event details.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center text-muted mb-3 mt-4" style="padding: 2rem; border-top: 1px solid var(--glass-border);">
+    <p>&copy; 2026 CampusEvents. All rights reserved.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      showLoading('#featured-events');
+      try {
+        const res = await api('/api/events');
+        const eventsContainer = document.getElementById('featured-events');
+        eventsContainer.innerHTML = '';
+        
+        const featured = res.events.slice(0, 3);
+        if (featured.length === 0) {
+          eventsContainer.innerHTML = '<p class="text-center w-100">No events found.</p>';
+          return;
+        }
+
+        featured.forEach(event => {
+          const card = document.createElement('div');
+          card.className = 'glass-card event-card';
+          card.innerHTML = `
+            <div class="event-card-img">${getCategoryIcon(event.category)}</div>
+            <div class="event-card-content">
+              <span class="badge ${getCategoryClass(event.category)} mb-1" style="align-self: flex-start;">${event.category}</span>
+              <h3 class="event-card-title">${event.event_name}</h3>
+              <div class="event-card-info">
+                <span>📅 ${formatDate(event.event_date)} | ${event.event_time}</span>
+                <span>📍 ${event.venue}</span>
+                <span>👥 ${event.registration_count}/${event.max_capacity} Registered</span>
+              </div>
+              <p class="event-card-desc">${event.description.substring(0, 80)}...</p>
+              <div class="event-card-footer">
+                <a href="event.html?id=${event.id}" class="btn btn-secondary btn-sm w-100">View Details</a>
+              </div>
+            </div>
+          `;
+          eventsContainer.appendChild(card);
+        });
+      } catch (err) {
+        document.getElementById('featured-events').innerHTML = '<p class="text-center text-danger w-100">Failed to load featured events.</p>';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details - CampusEvents</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="container mt-4 mb-4" style="padding-top: 70px;">
+    <div id="event-content">
+      <!-- Loaded dynamically -->
+    </div>
+
+    <!-- Admin Registrations Section (hidden by default) -->
+    <div id="admin-registrations-section" class="mt-4" style="display: none;">
+      <h3 class="mb-2">Registrations <span id="reg-count" class="badge badge-default"></span></h3>
+      <div class="table-container">
+        <table id="registrations-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Registered At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Loaded dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/event.js"></script>
+</body>
+</html>

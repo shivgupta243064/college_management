@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CampusEvents</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="dashboard-layout">
+    <aside class="sidebar" id="sidebar">
+      <ul class="sidebar-nav" id="sidebar-menu">
+        <li><a href="dashboard.html" class="nav-item active"><span class="icon">🏠</span> Dashboard</a></li>
+        <li><a href="#" class="nav-item" id="nav-my-events"><span class="icon">🎟️</span> My Events</a></li>
+        <li><a href="profile.html" class="nav-item"><span class="icon">👤</span> Profile</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="mb-4">
+        <h2 id="welcome-message">Welcome, User!</h2>
+        <p class="text-secondary">Here's an overview of your events.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="glass-card stat-card">
+          <div class="stat-value" id="stat-my-regs">0</div>
+          <div class="stat-label">My Registrations</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-value" id="stat-upcoming">0</div>
+          <div class="stat-label">Upcoming Events</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-value" id="stat-total">0</div>
+          <div class="stat-label">Total Events</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="form-control" placeholder="Search events by name or venue...">
+        </div>
+        <div class="filter-tabs" id="category-filters">
+          <div class="filter-tab active" data-category="">All</div>
+          <div class="filter-tab" data-category="Technical">Technical</div>
+          <div class="filter-tab" data-category="Cultural">Cultural</div>
+          <div class="filter-tab" data-category="Sports">Sports</div>
+          <div class="filter-tab" data-category="Workshop">Workshop</div>
+          <div class="filter-tab" data-category="Seminar">Seminar</div>
+        </div>
+      </div>
+
+      <h3 id="events-heading">All Events</h3>
+      <div id="dashboard-events" class="events-grid">
+        <!-- Events will be loaded here -->
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

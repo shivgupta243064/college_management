@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Event</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+}
+
+.container{
+    width:400px;
+    margin:60px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
+
+input, textarea{
+    width:90%;
+    padding:10px;
+    margin:8px;
+}
+
+button{
+    width:95%;
+    padding:10px;
+    background:blue;
+    color:white;
+    border:none;
+    border-radius:5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Add Event</h1>
+
+<form method="POST">
+
+<input type="text" name="event_name" placeholder="Event Name">
+
+<input type="date" name="event_date">
+
+<input type="text" name="venue" placeholder="Venue">
+
+<textarea name="description" placeholder="Description"></textarea>
+
+<button type="submit">Add Event</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
